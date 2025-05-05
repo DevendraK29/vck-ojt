@@ -31,8 +31,13 @@ To get started with development:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows, use: venv\Scripts\activate
-   pip install -r requirements.txt
-   pip install -r requirements-dev.txt
+   
+   # Install uv package manager
+   curl -sSf https://astral.sh/uv/install.sh | bash
+   
+   # Install dependencies
+   uv pip install -r requirements.txt
+   uv pip install -r requirements-dev.txt
    ```
 4. Create a branch for your work:
    ```bash
@@ -63,10 +68,12 @@ We follow these principles in our codebase:
 
 ### Python Style Guide
 
+- Use [uv](https://github.com/astral-sh/uv) as the package manager and for running Python commands
 - Follow [PEP 8](https://www.python.org/dev/peps/pep-0008/) for Python code style
 - Use type hints for all function parameters and return values
 - Use Google-style docstrings
 - Implement proper error handling with try/except blocks
+- Use `uv run` to execute Python scripts and tests (e.g., `uv run pytest`, `uv run python script.py`)
 
 ### Documentation
 
@@ -80,7 +87,7 @@ We follow these principles in our codebase:
 1. Ensure your code follows our coding standards
 2. Update documentation as needed
 3. Add or update tests as appropriate
-4. Ensure all tests are passing
+4. Ensure all tests are passing (`uv run pytest`)
 5. Fill out the pull request template completely
 6. Request review from maintainers
 7. Address any feedback from code reviews

@@ -4,16 +4,18 @@ A state-of-the-art multi-agent travel planning system powered by OpenAI Agents S
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Key Features](#key-features)
-- [Technology Stack](#technology-stack)
-- [System Architecture](#system-architecture)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Development](#development)
-- [Contributing](#contributing)
-- [License](#license)
-- [How to Cite](#how-to-cite)
+- [OpenAI Agents Travel Graph 🧳 ✈️ 🗺️](#openai-agents-travel-graph--️-️)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Key Features](#key-features)
+  - [Technology Stack](#technology-stack)
+  - [System Architecture](#system-architecture)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Development](#development)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [How to Cite](#how-to-cite)
 
 ## Overview
 
@@ -22,6 +24,31 @@ OpenAI Agents Travel Graph is an advanced AI-powered travel planning system that
 By combining the power of the OpenAI Agents SDK with graph-based orchestration through LangGraph, the system can maintain complex workflows while providing personalized travel recommendations that meet user preferences and budget constraints.
 
 ## Key Features
+
+```mermaid
+mindmap
+  root((Travel<br>Planning<br>System))
+    (Multi-Agent Architecture)
+      [Destination Research]
+      [Flight Search]
+      [Accommodation]
+      [Transportation]
+      [Activities]
+    (Browser Automation)
+      [Self-healing]
+      [Parallel execution]
+      [Data extraction]
+    (Budget Management)
+      [Cost tracking]
+      [Value optimization]
+      [Alternative options]
+    (Personalization)
+      [Preference analysis]
+      [Custom recommendations]
+    (Knowledge Storage)
+      [Persistent memory]
+      [Entity relationships]
+```
 
 - 🤖 **Multi-Agent Architecture** - Specialized agents for different travel planning aspects
 - 💰 **Budget Optimization** - Intelligent allocation of budget across travel components
@@ -34,38 +61,84 @@ By combining the power of the OpenAI Agents SDK with graph-based orchestration t
 
 ## Technology Stack
 
-- **Primary Framework**: [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) - Core agent framework
-- **Orchestration**: [LangGraph](https://github.com/langchain-ai/langgraph) - Multi-agent workflow management
-- **Browser Automation**: [Stagehand](https://github.com/browserbase/stagehand) - AI-enhanced browser control
-- **Web Interaction**: [Playwright](https://playwright.dev/) - Reliable browser automation
+- **Primary Framework**: [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) (Latest 2025 Release) - Core agent framework
+- **Orchestration**: [LangGraph v0.4+](https://github.com/langchain-ai/langgraph) - Multi-agent workflow management
+- **Browser Automation**: [Stagehand v2.0+](https://github.com/browserbase/stagehand) - AI-enhanced browser control
 - **Data Persistence**: [Supabase](https://supabase.com/) - Database and storage
-- **Web Research**: 
+- **Research Tools**:
   - [Firecrawl](https://firecrawl.dev/) - Web content extraction
   - [Tavily API](https://tavily.com/) - Intelligent search
-- **Memory Management**: OpenAI context management
+  - [Context7](https://context7.com/) - Documentation access
+- **Memory Management**: Memory MCP Server - Persistent context across sessions
+
+For the full technology stack and detailed system architecture, see [Architecture & Requirements](docs/architecture-requirements.md).
 
 ## System Architecture
 
-The system follows a modular architecture with specialized agents coordinated through LangGraph:
+The system follows a comprehensive multi-layered architecture with specialized agents coordinated through LangGraph:
 
-```
-┌─────────────────────────────────────────────┐
-│           Orchestrator Agent                │
-│  (coordinates workflow and maintains state) │
-└───────────┬─────────────┬─────────────┬────┘
-            │             │             │
-┌───────────▼─────┐ ┌─────▼───────┐ ┌───▼───────────┐
-│  Destination    │ │   Flight    │ │ Accommodation │
-│  Research Agent │ │ Search Agent│ │     Agent     │
-└───────────┬─────┘ └─────┬───────┘ └───┬───────────┘
-            │             │             │
-┌───────────▼─────┐ ┌─────▼───────┐ ┌───▼───────────┐
-│ Transportation  │ │  Activity   │ │    Budget     │
-│     Agent       │ │Planning Agent│ │ Management   │
-└─────────────────┘ └─────────────┘ └───────────────┘
+```mermaid
+flowchart TD
+    %% Main system layers
+    UI[User Interface Layer] --> OL
+    
+    %% Orchestration layer
+    subgraph OL[Orchestration Layer - LangGraph]
+        SM[State Management]
+        AWM[Agent Workflow Management]
+        CP[Context Preservation]
+    end
+    
+    %% Specialized agents
+    OL --> DRA[Destination Research Agent]
+    OL --> FSA[Flight Search Agent]
+    OL --> ASA[Accommodation Search Agent] 
+    OL --> TPA[Transportation Planning Agent]
+    OL --> APA[Activity Planning Agent]
+    
+    %% Browser automation & budget management
+    DRA & FSA & ASA & TPA & APA --> BAL[Browser Automation Layer]
+    BAL --> BMA[Budget Management Agent]
+    BMA --> KML[Knowledge & Memory Layer]
+    KML --> PS[Persistent Storage - Supabase]
+    
+    %% Styling
+    classDef systemLayer fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef agent fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    
+    class UI,OL,BAL,KML,PS systemLayer
+    class DRA,FSA,ASA,TPA,APA,BMA agent
 ```
 
-Each agent uses a combination of LLM capabilities and specialized tools to perform its tasks, with the orchestration layer maintaining state and ensuring proper handoffs between agents.
+Each specialized agent uses a combination of LLM capabilities and domain-specific tools to perform its tasks, with the orchestration layer maintaining state and ensuring proper handoffs between agents.
+
+### Agent Interaction Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Orchestrator as Orchestration Agent
+    participant Destination as Destination Agent
+    participant Flight as Flight Agent
+    participant Hotel as Hotel Agent
+    
+    User->>Orchestrator: Travel Request
+    Orchestrator->>Destination: Research Request
+    Destination-->>Orchestrator: Destination Options
+    
+    par Flight & Hotel Search
+        Orchestrator->>Flight: Search Flights
+        Orchestrator->>Hotel: Search Accommodations
+    end
+    
+    Flight-->>Orchestrator: Flight Options
+    Hotel-->>Orchestrator: Accommodation Options
+    Orchestrator->>User: Complete Itinerary
+    
+    Note over User,Hotel: Human feedback loop can interrupt at any stage
+```
+
+For the complete detailed architecture diagram and component descriptions, see [Architecture & Requirements](docs/architecture-requirements.md).
 
 ## Installation
 
@@ -78,8 +151,11 @@ cd openai-agents-travel-graph
 python -m venv venv
 source venv/bin/activate  # On Windows, use: venv\\Scripts\\activate
 
+# Install uv package manager
+curl -sSf https://astral.sh/uv/install.sh | bash
+
 # Install dependencies
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 
 # Set up environment variables
 cp .env.example .env
@@ -98,8 +174,10 @@ If you'd like to contribute to the development of this project, please follow th
 2. Create a feature branch
 3. Make your changes
 4. Add tests for your changes
-5. Run the test suite to ensure everything works
+5. Run the test suite with `uv run pytest`
 6. Submit a pull request
+
+This project uses [uv](https://github.com/astral-sh/uv) as its Python package manager. For all Python-related commands, use `uv run` (e.g., `uv run pytest`, `uv run python script.py`).
 
 See the [CONTRIBUTING.md](CONTRIBUTING.md) file for more details.
 
@@ -115,12 +193,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you use this project in your research or work, please cite it as:
 
-```
-Melin, B. (2025). OpenAI Agents Travel Graph: A multi-agent system for autonomous travel planning. 
+```plaintext
+Melin, B. (2025). OpenAI Agents Travel Graph: A multi-agent system for autonomous travel planning.
 GitHub repository. https://github.com/BjornMelin/openai-agents-travel-graph
 ```
 
-BibTeX:
+**BibTeX:**
+
 ```bibtex
 @misc{openai-agents-travel-graph,
   author = {Melin, Bjorn},
