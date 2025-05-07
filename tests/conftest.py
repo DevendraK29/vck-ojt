@@ -2,15 +2,22 @@
 Pytest configuration for the Travel Planner system tests.
 """
 
-import os
-import pytest
 from unittest.mock import AsyncMock, MagicMock
 
-import openai
+import pytest
 
-from travel_planner.config import TravelPlannerConfig, APIConfig, SystemConfig
-from travel_planner.utils import setup_logging, LogLevel
-from travel_planner.agents.base import AgentConfig
+# Register asyncio marker
+pytest.importorskip("pytest_asyncio")
+pytest.mark.asyncio = pytest.mark.asyncio
+
+# Import project modules after configuring pytest
+from travel_planner.agents.base import AgentConfig  # noqa: E402
+from travel_planner.config import (  # noqa: E402
+    APIConfig,
+    SystemConfig,
+    TravelPlannerConfig,
+)
+from travel_planner.utils import LogLevel, setup_logging  # noqa: E402
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -23,11 +30,10 @@ def setup_test_logging():
 def mock_openai_client():
     """Mock OpenAI client for testing."""
     mock_client = MagicMock()
-    
+
     # Mock the chat completions create method
-    mock_chat = MagicMock()
     mock_client.chat.completions.create = AsyncMock()
-    
+
     # Set up a basic response structure
     mock_response = MagicMock()
     mock_choice = MagicMock()
@@ -35,9 +41,9 @@ def mock_openai_client():
     mock_message.content = "Test response"
     mock_choice.message = mock_message
     mock_response.choices = [mock_choice]
-    
+
     mock_client.chat.completions.create.return_value = mock_response
-    
+
     return mock_client
 
 

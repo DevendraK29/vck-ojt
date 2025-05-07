@@ -2,15 +2,24 @@
 Unit tests for the base agent class.
 """
 
-import pytest
-from unittest.mock import AsyncMock, patch, MagicMock
+# Import mock OpenAI before anything else
+from tests.unit.mock_openai import setup_mock_openai
 
-from travel_planner.agents.base import (
-    BaseAgent, 
-    AgentConfig, 
-    AgentContext,
-    InvalidConfigurationException
+# Set up mock OpenAI client
+setup_mock_openai()
+
+import pytest  # noqa: E402
+
+from travel_planner.agents.base import (  # noqa: E402
+    AgentConfig,
+    BaseAgent,
+    InvalidConfigurationException,
 )
+
+# Constants for test assertions
+DEFAULT_TEMPERATURE = 0.7
+SINGLE_MESSAGE_COUNT = 2
+MULTI_MESSAGE_COUNT = 4
 
 
 def test_agent_initialization():
@@ -20,11 +29,11 @@ def test_agent_initialization():
         instructions="Test instructions",
     )
     agent = BaseAgent(config)
-    
+
     assert agent.name == "Test Agent"
     assert agent.instructions == "Test instructions"
     assert agent.config.model == "gpt-4o"  # Default model
-    assert agent.config.temperature == 0.7  # Default temperature
+    assert agent.config.temperature == DEFAULT_TEMPERATURE  # Default temperature
 
 
 def test_agent_initialization_invalid_config():
@@ -37,7 +46,7 @@ def test_agent_initialization_invalid_config():
         )
         agent = BaseAgent(config)
         agent._validate_config()
-    
+
     # Missing instructions
     with pytest.raises(InvalidConfigurationException):
         config = AgentConfig(
@@ -55,10 +64,10 @@ def test_prepare_messages_string_input():
         instructions="Test instructions",
     )
     agent = BaseAgent(config)
-    
+
     messages = agent._prepare_messages("Hello")
-    
-    assert len(messages) == 2
+
+    assert len(messages) == SINGLE_MESSAGE_COUNT
     assert messages[0]["role"] == "system"
     assert messages[0]["content"] == "Test instructions"
     assert messages[1]["role"] == "user"
@@ -72,16 +81,16 @@ def test_prepare_messages_list_input():
         instructions="Test instructions",
     )
     agent = BaseAgent(config)
-    
+
     input_messages = [
         {"role": "user", "content": "Hello"},
         {"role": "assistant", "content": "Hi there"},
         {"role": "user", "content": "How are you?"},
     ]
-    
+
     messages = agent._prepare_messages(input_messages)
-    
-    assert len(messages) == 4  # Input messages + system message
+
+    assert len(messages) == MULTI_MESSAGE_COUNT  # Input messages + system message
     assert messages[0]["role"] == "system"
     assert messages[0]["content"] == "Test instructions"
     assert messages[1:] == input_messages
@@ -94,15 +103,15 @@ def test_prepare_messages_with_existing_system():
         instructions="Test instructions",
     )
     agent = BaseAgent(config)
-    
+
     input_messages = [
         {"role": "system", "content": "Existing instructions"},
         {"role": "user", "content": "Hello"},
     ]
-    
+
     messages = agent._prepare_messages(input_messages)
-    
-    assert len(messages) == 2
+
+    assert len(messages) == SINGLE_MESSAGE_COUNT
     assert messages[0]["role"] == "system"
     assert messages[0]["content"] == "Existing instructions"  # Preserved
     assert messages[1]["role"] == "user"
@@ -117,7 +126,7 @@ async def test_run_method_not_implemented():
         instructions="Test instructions",
     )
     agent = BaseAgent(config)
-    
+
     with pytest.raises(NotImplementedError):
         await agent.run("Hello")
 
@@ -130,6 +139,6 @@ async def test_process_method_not_implemented():
         instructions="Test instructions",
     )
     agent = BaseAgent(config)
-    
+
     with pytest.raises(NotImplementedError):
         await agent.process("Hello", None)
