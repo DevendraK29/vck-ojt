@@ -1,4 +1,5 @@
 import Header from "../components/Header/Header";
+import Footer  from "../components/Footer/Footer";
 
 const HomePage = () => {
     return(
@@ -22,6 +23,7 @@ const HomePage = () => {
             <img src="../Images/students-studying-DbLGuwF_.jpg" height="200" />
             <br />
             <img src="../Images/campus-life-Crkero7B.jpg" height="100" />
+            <Footer />
         </div></>
     )
 }
