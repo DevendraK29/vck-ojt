@@ -1,0 +1,41 @@
+/* Header.css */
+
+.site-header {
+  /* position: sticky; */
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  background-color: #0288f5; /* Bright blue */
+  flex-wrap: wrap;
+  color: white;
+}
+
+.brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ccefff;
+}
+
+.apply-btn {
+  background-color: #2ecc71; /* Green button */
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+}
+
+.apply-btn:hover {
+  background-color: #27ae60;
+}
