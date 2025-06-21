@@ -1,13 +1,10 @@
 .main-wrapper {
-   /* width: 100%; */
   display: flex;
   justify-content: center;
-  padding: 20px;
   background-color: #44d8dc; /* Optional: outer background */
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   margin: auto;
-  /* padding: 20px; */
   box-sizing: border-box;
 }
 

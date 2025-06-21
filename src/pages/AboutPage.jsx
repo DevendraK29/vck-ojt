@@ -1,4 +1,5 @@
 import Header from "../components/Header/Header";
+// import '../styles/AboutPage.css'
 
 const AboutPage = () => {
     return(
