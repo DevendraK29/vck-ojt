@@ -1,6 +1,6 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-const ContentPage = () => {
+const ContactPage = () => {
     return(
         <div>
             <Header />
@@ -22,4 +22,4 @@ const ContentPage = () => {
     )
 }
 
-export default ContentPage;
+export default ContactPage;
