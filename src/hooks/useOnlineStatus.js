@@ -9,8 +9,8 @@ const useOnlineStatus =()=> {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   useEffect(() => {
     // Event handlers to update the state
-    const handleOnline = () => setIsOnline(true);
-    const handleOffline = () => setIsOnline(false);
+    const handleOnline = () => setIsOnline(true); //you are online
+    const handleOffline = () => setIsOnline(false);//you are offline
     // Add event listeners when the component mounts
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);

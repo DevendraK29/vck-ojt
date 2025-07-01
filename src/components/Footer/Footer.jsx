@@ -1,11 +1,9 @@
-import {Link} from 'react-router-dom'
-import "./Footer.css"
+import './Footer.css'; // Import the CSS for the Footer
 const Footer = () => {
-    return(
-        <div className='footer'>
-            © 2025 Vivekanand College. All rights reserved.
-        </div>
-    )
+  return (
+    <footer className="footer">
+      <p>&copy; {new Date().getFullYear()} Vivekanand College. All rights reserved.</p>
+    </footer>
+  );
 }
-
 export default Footer;
