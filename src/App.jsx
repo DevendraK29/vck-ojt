@@ -4,6 +4,7 @@ import AboutPage from "./pages/AboutPage"
 import CoursesPage from "./pages/CoursesPage"
 import ContactPage from "./pages/ContactPage"
 import AdmissionPage from "./pages/AdmissionPage"
+import devendraPage from "./pages/devendra";
 import ChatbotComponent from "./components/Chatbot/ChatbotComponents";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -40,6 +41,7 @@ const App = () => {
               <Route path="/courses" element={<CoursesPage/>}/>
               <Route path="/contact" element={<ContactPage/>}/>
               <Route path="/admission" element={<AdmissionPage/>}/>
+              <Route path="/devendra" element={<devendraPage />}/>
             </Routes>
             <ChatbotComponent />
             </div>
